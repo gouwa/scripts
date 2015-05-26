@@ -19,6 +19,17 @@ sudo rm -rf rootfs/lost+found
 # Extract the ubuntu-core tarball
 sudo tar xzf archives/ubuntu-core-14.04.2-core-armhf.tar.gz -C rootfs/
 
+# Add hardware packages
+sudo cp -a archives/hwpacks/system/ rootfs/
+
+# Add Mali support
+sudo sed -i '/^exit 0/i/sbin/insmod /system/lib/modules/mali_kbase.ko' rootfs/etc/rc.local
+
+# Add wifi & bt support
+sudo cp archives/hwpacks/wifibt/wifion rootfs/usr/local/bin/
+sudo cp archives/hwpacks/wifibt/wifioff rootfs/usr/local/bin/
+sudo cp archives/hwpacks/wifibt/*.conf rootfs/etc/init
+
 # Chroot
 sudo cp /usr/bin/qemu-arm-static rootfs/usr/bin/
 sudo modprobe binfmt_misc
