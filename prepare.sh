@@ -40,6 +40,7 @@ fi
 if [ ! -d ~/project/ubuntu/utils/upgrade/.git ]; then
 	git clone https://github.com/gouwa/upgrade_tool.git utils/upgrade
 	sudo cp -a utils/upgrade/upgrade_tool /usr/local/bin
+	sudo cp -a utils/upgrade/rkflashtool /usr/local/bin
 fi
 
 # scripts [option]
